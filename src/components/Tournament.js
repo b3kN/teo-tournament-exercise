@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
+import Matches from './Matches';
 
 class Tournament extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			orderAscending: true,
-			league: props.league,
-			tourneyData: null
+			id: props.league,
+			name: null,
+			start: null
 		};
 	}
 
 	componentDidMount() {
-		this.getTournamentData();
-	}
+		var corsBypass = "https://cors-anywhere.herokuapp.com/";
 
-	getTournamentData() {
-		fetch(`https://api.eslgaming.com/play/v1/leagues/${this.state.league}`)
+		fetch(corsBypass + `https://api.eslgaming.com/play/v1/leagues/${this.state.id}`)
 			.then(response => response.json())
-			.then(tourneyData => this.setState({ tourneyData }))
-			.catch(e => e);
+			.then(data => this.setState({ name: data.name.full, start: data.timeline.inProgress.begin }))
+			.catch(e => console.log('error', e));
 	}
 
 	render() {
 		return (
 			<div className="tournament-card">
-				<div>
-					{this.state.tourneyData}
+				<div className="tournament-header">
+					<h4>
+						{this.state.name}
+					</h4>
+					<h5>
+						{this.state.start}
+					</h5>
 				</div>
+				<Matches league={this.state.id} />
 			</div>
 		);
 	}
