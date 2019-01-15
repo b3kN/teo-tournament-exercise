@@ -1,1 +1,1 @@
-# teo-tournament-exercise
+Simple ReactJS application to display tournament information.
