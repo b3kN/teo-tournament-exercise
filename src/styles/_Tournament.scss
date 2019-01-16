@@ -1,0 +1,24 @@
+h4 {
+	margin: 0;
+}
+
+.tournament-card {
+	flex: 1;
+	padding: 0 0.5em;
+}
+
+.tournament-header {
+	background-color: white;
+	border-top: 4px solid green;
+	border-radius: 0.2em;
+}
+
+.header-holder {
+	width: 95%;
+	margin: 0 auto;
+	padding: 1em 0;
+}
+
+.start-date {
+	font-size: 0.8em;
+}
