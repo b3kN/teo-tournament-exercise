@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Matches from './Matches';
+import moment from 'moment';
 
 class Tournament extends Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ class Tournament extends Component {
 
 		fetch(corsBypass + `https://api.eslgaming.com/play/v1/leagues/${this.state.id}`)
 			.then(response => response.json())
-			.then(data => this.setState({ name: data.name.full, start: data.timeline.inProgress.begin }))
+			.then(data => this.setState({ name: data.name.full, start: moment(data.timeline.inProgress.begin).format("Qo MMMM YYYY") }))
 			.catch(e => console.log('error', e));
 	}
 
@@ -25,12 +26,14 @@ class Tournament extends Component {
 		return (
 			<div className="tournament-card">
 				<div className="tournament-header">
-					<h4>
-						{this.state.name}
-					</h4>
-					<h5>
-						{this.state.start}
-					</h5>
+					<div className="header-holder">
+						<h4>
+							{this.state.name}
+						</h4>
+						<span className="start-date">
+							{this.state.start}
+						</span>
+					</div>
 				</div>
 				<Matches league={this.state.id} />
 			</div>
