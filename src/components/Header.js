@@ -1,13 +1,11 @@
 import React from 'react';
 
 const Header = props => (
-	<header style={{ marginBottom: 10 }}>
-		<div>
-			<span className="header"> {props.title} </span>
-		</div>
+	<header>
+		<h1> {props.title} </h1>
 
-		<div className="subheader-body">
-			<span className="subheader"> Written by <a className="link" href="https://github.com/b3kN">@b3kN</a>. </span>
+		<div className="subheader">
+			Written by <a href="https://github.com/b3kN">@b3kN</a>
 		</div>
 	</header>
 );
