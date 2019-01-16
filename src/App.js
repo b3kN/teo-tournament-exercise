@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Tournament from './components/Tournament';
 import Header from './components/Header';
-import './App.css';
+import './styles/App.scss';
 
 class App extends Component {
   constructor (props) {
@@ -15,9 +15,11 @@ class App extends Component {
 			<div className="app">
 				<Header title="Tournament Exercise" />
 
-				<Tournament league="177160" />
-				<Tournament league="177161" />
-				<Tournament league="185553" />
+				<div className="tournaments-holder">
+					<Tournament league="177160" />
+					<Tournament league="177161" />
+					<Tournament league="185553" />
+				</div>
 			</div>
 		);
 	}
