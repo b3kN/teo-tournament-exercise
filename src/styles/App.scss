@@ -20,3 +20,18 @@ html, body {
 	margin: 2.5em auto;
 	width: 80em;
 }
+
+@media only screen and (max-width: 1300px) {
+	.tournaments-holder {
+		width: 52em;
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.tournaments-holder {
+		width: 90%;
+		max-width: 25em;
+		display: block;
+	}
+}
