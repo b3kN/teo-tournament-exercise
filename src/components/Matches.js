@@ -31,7 +31,7 @@ class Matches extends Component {
 
 	render() {
 		return (
-			<div className="matchesHolder">
+			<div className="matches-holder">
 				Lorem Ipsum...
 			</div>
 		);
