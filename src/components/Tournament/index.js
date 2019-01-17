@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Matches from './Matches';
+import Matches from './../Matches';
 import moment from 'moment';
 
 class Tournament extends Component {
