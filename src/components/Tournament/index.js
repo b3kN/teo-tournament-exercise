@@ -8,7 +8,7 @@ class Tournament extends Component {
 
 		this.state = {
 			id: props.league,
-			name: null,
+			name: "Tournament Data Loading...",
 			start: null
 		};
 	}
