@@ -24,7 +24,7 @@ class Tournament extends Component {
 
 	render() {
 		return (
-			<div className="tournament-card">
+			<div className="card-holder">
 				<div className="tournament-header">
 					<div className="header-holder">
 						<h4>
