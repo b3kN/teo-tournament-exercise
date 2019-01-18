@@ -50,7 +50,7 @@ class Matches extends Component {
 
 						return tempResults;
 					}).then(finalResults => {
-						console.log('finalResults', finalResults);
+						// console.log('finalResults', finalResults);
 
 						if (finalResults.length > 0) {
 							finalResults.sort(function (a, b) {
@@ -60,17 +60,33 @@ class Matches extends Component {
 							this.setState({ results: finalResults });
 						}
 
+						this.setState({ loading: false });
+
 						// console.log('Final matches list:', this.state.results);
 					});
 			}).catch(e => console.log('Error while fetching league results', e));
 	}
 
 	render() {
-		return (
-			<div className="testing">
-				TESTING...
-			</div>
-		);
+		if (this.state.loading) {
+			return (
+				<h3>Loading Matches...</h3>
+			);
+		} else {
+			return (
+				<div>
+					{this.state.results.map(match => (
+						<div className="match-holder">
+							{match.participants.map(team => (
+								<div className="team-line">
+									{team.name}
+								</div>
+							))}
+						</div>
+					))}
+				</div>
+			);
+		}
 	}
 }
 
