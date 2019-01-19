@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class Matches extends Component {
 	constructor(props) {
@@ -29,7 +30,7 @@ class Matches extends Component {
 						let tempResults = [];
 
 						data.forEach(item => {
-							let result = new Result(item.beginAt, null, item.state),
+							let result = new Result(moment(item.beginAt).format("h:mm"), null, item.state),
 								participants = [];
 
 							// console.log('Create new result item for current item', result);
@@ -44,16 +45,16 @@ class Matches extends Component {
 									participant = new Participant("Team Not Found", p.points[0], p.place);
 								}
 
-								console.log('Add participant to current result item', participant);
+								// console.log('Add participant to current result item', participant);
 
 								participants.push(participant);
 							});
 
 							participants.sort(function (a, b) {
-								return b.place - a.place;
+								return a.place - b.place;
 							});
 
-							console.log('Participant list for current result item', participants);
+							// console.log('Participant list for current result item', participants);
 
 							result.participants = participants;
 
@@ -74,7 +75,7 @@ class Matches extends Component {
 
 						this.setState({ loading: false });
 
-						console.log('Final matches list:', this.state.results);
+						// console.log('Final matches list:', this.state.results);
 					});
 			}).catch(e => console.log('Error while fetching league results', e));
 	}
@@ -90,9 +91,14 @@ class Matches extends Component {
 					{this.state.results.map((match, m) => {
 						return (
 							<div key={m} className="match-holder">
+								<div className="start-time">
+									{match.time}
+								</div>
 								{match.participants.map((team, t) => {
+									let classes = t === 0 ? 'team-line victor' : 'team-line';
+
 									return (
-										<div key={t} className="team-line">
+										<div key={t} className={classes}>
 											{team.name}
 											<span style={{ float: 'right' }}>
 												{team.score}
@@ -110,8 +116,8 @@ class Matches extends Component {
 }
 
 class Result {
-	constructor(date, participants, state) {
-		this.date = date;
+	constructor(time, participants, state) {
+		this.time = time;
 		this.participants = participants;
 		this.state = state;
 	}
@@ -121,7 +127,7 @@ class Participant {
 	constructor(name, score, place) {
 		this.name = name;
 		this.score = score;
-		this.place = score;
+		this.place = place;
 	}
 }
 	
