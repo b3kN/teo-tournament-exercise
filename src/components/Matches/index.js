@@ -29,7 +29,8 @@ class Matches extends Component {
 						let tempResults = [];
 
 						data.forEach(item => {
-							let result = new Result(item.beginAt, [], item.state);
+							let result = new Result(item.beginAt, null, item.state),
+								participants = [];
 
 							// console.log('Create new result item for current item', result);
 
@@ -43,10 +44,18 @@ class Matches extends Component {
 									participant = new Participant("Team Not Found", p.points[0], p.place);
 								}
 
-								// console.log('Add participant to current result item', participant);
+								console.log('Add participant to current result item', participant);
 
-								result.participants.push(participant);
+								participants.push(participant);
 							});
+
+							participants.sort(function (a, b) {
+								return b.place - a.place;
+							});
+
+							console.log('Participant list for current result item', participants);
+
+							result.participants = participants;
 
 							tempResults.push(result);
 						});
@@ -85,6 +94,9 @@ class Matches extends Component {
 									return (
 										<div key={t} className="team-line">
 											{team.name}
+											<span style={{ float: 'right' }}>
+												{team.score}
+											</span>
 										</div>
 									);
 								})}
