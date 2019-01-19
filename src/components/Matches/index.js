@@ -34,15 +34,18 @@ class Matches extends Component {
 							// console.log('Create new result item for current item', result);
 
 							item.participants.forEach(p => {
-								let team = this.state.contestants.find(c => c.id === p.id);
+								let team = this.state.contestants.find(c => c.id === p.id),
+									participant;
 
 								if (team) {
-									let participant = new Participant(team.name, p.points[0], p.place);
-
-									// console.log('Add participant to current result item', participant);
-
-									result.participants.push(participant);
+									participant = new Participant(team.name, p.points[0], p.place);
+								} else {
+									participant = new Participant("Team Not Found", p.points[0], p.place);
 								}
+
+								// console.log('Add participant to current result item', participant);
+
+								result.participants.push(participant);
 							});
 
 							tempResults.push(result);
@@ -62,7 +65,7 @@ class Matches extends Component {
 
 						this.setState({ loading: false });
 
-						// console.log('Final matches list:', this.state.results);
+						console.log('Final matches list:', this.state.results);
 					});
 			}).catch(e => console.log('Error while fetching league results', e));
 	}
@@ -74,16 +77,20 @@ class Matches extends Component {
 			);
 		} else {
 			return (
-				<div>
-					{this.state.results.map(match => (
-						<div className="match-holder">
-							{match.participants.map(team => (
-								<div className="team-line">
-									{team.name}
-								</div>
-							))}
-						</div>
-					))}
+				<div className="results-holder">
+					{this.state.results.map((match, m) => {
+						return (
+							<div key={m} className="match-holder">
+								{match.participants.map((team, t) => {
+									return (
+										<div key={t} className="team-line">
+											{team.name}
+										</div>
+									);
+								})}
+							</div>
+						);
+					})}
 				</div>
 			);
 		}
