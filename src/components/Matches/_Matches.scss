@@ -7,21 +7,25 @@
 .match-holder {
 	border-bottom: 1px solid #ccc;
 	padding: 2.5%;
-}
-
-	.match-holder .team-line:first-child {
-		border-left: 3px solid green;
-	}
-
-	.match-holder .team-line:first-child span {
-		font-weight: 700;
-	}
-
-.team-line {
-	border-radius: 0.2em;
-	border-left: 3px solid red;
 	font-size: 0.75em;
-	line-height: 2em;
-	margin: 0.5em 0;
-	padding: 0.1em 0 0.1em 0.5em;
+
+	.start-time {
+		color: #777;
+	}
+
+	.team-line {
+		border-radius: 0.2em;
+		border-left: 3px solid red;
+		line-height: 2em;
+		margin: 0.5em 0;
+		padding: 0.05em 0 0.05em 0.5em;
+	}
+
+	.team-line.victor {
+		border-left: 3px solid green;
+
+		span {
+			font-weight: 700;
+		}
+	}
 }
