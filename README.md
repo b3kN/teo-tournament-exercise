@@ -1,7 +1,7 @@
 # teo-tournament-exercise
 
 [![Website](https://img.shields.io/website-up-down-green-red/http/suddi.github.io.svg)](https://box.b3kndev.com)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69d83996bf574c919ae2d0ce800bb78e)](https://www.codacy.com/app/suddir/suddi-github-io?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=suddi/suddi.github.io&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69d83996bf574c919ae2d0ce800bb78e)](https://app.codacy.com/project/b3kN/teo-tournament-exercise/dashboard)
 [![license](https://img.shields.io/github/license/suddi/suddi.github.io.svg)](https://github.com/b3kN/teo-tournament-exercise/blob/master/LICENSE)
 
 [`teo-tournament-exercise`](https://box.b3kndev.com) is a simple ReactJS application to display tournament information provided using the TEO/ESL Gaming REST API.
