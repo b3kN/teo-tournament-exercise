@@ -93,7 +93,7 @@ class Matches extends Component {
 	render() {
 		if (this.state.loading) {
 			return (
-				<h3>Loading Matches...</h3>
+				<h3>Matches data loading...</h3>
 			);
 		} else {
 			return (

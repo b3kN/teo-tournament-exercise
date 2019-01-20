@@ -1,10 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Enzyme, { mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Matches from './';
 
-describe('Matches Component', () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+describe('Tournament Component', () => {
+	let tournament;
+
 	it('renders without crashing', () => {
-		const matches = document.createElement('div');
-		ReactDOM.render(<Matches league="00000" />, matches);
+		shallow(<Matches league="test" />);
+	});
+
+	it('creates holder div for tournament header information', () => {
+		tournament = mount(<Matches league="test" />);
+
+		expect(tournament.find('h3').length).toEqual(1);
+	});
+
+	it('matches contains default title string', () => {
+		tournament = mount(<Matches league="test" />);
+
+		expect(tournament.find('h3').text()).toEqual("Matches data loading...");
 	});
 });
