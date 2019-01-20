@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import moment from "moment";
 
+class Result {
+	constructor(time, participants, state) {
+		this.time = time;
+		this.participants = participants;
+		this.state = state;
+	}
+}
+
+class Participant {
+	constructor(name, score, place) {
+		this.name = name;
+		this.score = score;
+		this.place = place;
+	}
+}
+
 class Matches extends Component {
 	constructor(props) {
 		super(props);
@@ -25,19 +41,19 @@ class Matches extends Component {
 
 		fetch(corsBypass + `https://api.eslgaming.com/play/v1/leagues/${this.state.id}/contestants`)
 			.then((response) => response.json())
-			.then(teams => this.setState({ contestants: teams }))
+			.then((teams) => this.setState({ contestants: teams }))
 			.then(() => {
 				fetch(corsBypass + `https://api.eslgaming.com/play/v1/leagues/${this.state.id}/results`)
-					.then(response => response.json())
-					.then(data => {
+					.then((response) => response.json())
+					.then((data) => {
 						let tempResults = [];
 
-						data.forEach(item => {
+						data.forEach((item) => {
 							let result = new Result(moment(item.beginAt).format("h:mm"), null, item.state),
 								participants = [];
 
-							item.participants.forEach(p => {
-								let team = this.state.contestants.find(c => c.id === p.id),
+							item.participants.forEach((p) => {
+								let team = this.state.contestants.find((c) => c.id === p.id),
 									participant;
 
 								if (team) {
@@ -70,7 +86,7 @@ class Matches extends Component {
 
 						this.setState({ loading: false });
 					});
-			}).catch((e) => console.log("Error while fetching league results", e));
+			}).catch((e) => { console.log("Error while fetching league results", e); });
 	}
 
 	reverseSortOrder() {
@@ -118,22 +134,6 @@ class Matches extends Component {
 				</div>
 			);
 		}
-	}
-}
-
-class Result {
-	constructor(time, participants, state) {
-		this.time = time;
-		this.participants = participants;
-		this.state = state;
-	}
-}
-
-class Participant {
-	constructor(name, score, place) {
-		this.name = name;
-		this.score = score;
-		this.place = place;
 	}
 }
 	

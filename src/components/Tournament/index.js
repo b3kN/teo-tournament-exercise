@@ -19,7 +19,7 @@ class Tournament extends Component {
 		fetch(corsBypass + `https://api.eslgaming.com/play/v1/leagues/${this.state.id}`)
 			.then((response) => response.json())
 			.then((data) => this.setState({ name: data.name.full, start: moment(data.timeline.inProgress.begin).format("Qo MMMM YYYY") }))
-			.catch((e) => console.log("error", e));
+			.catch((e) => { console.log("error", e); });
 	}
 
 	render() {
