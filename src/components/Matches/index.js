@@ -7,10 +7,13 @@ class Matches extends Component {
 
 		this.state = {
 			loading: true,
+			sortAscending: true,
 			id: props.league,
 			results: null,
 			contestants: null
 		};
+
+		this.reverseSortOrder = this.reverseSortOrder.bind(this);
 	}
 
 	componentDidMount() {
@@ -75,9 +78,16 @@ class Matches extends Component {
 
 						this.setState({ loading: false });
 
-						// console.log('Final matches list:', this.state.results);
+						console.log('Final matches list:', this.state.results);
 					});
 			}).catch(e => console.log('Error while fetching league results', e));
+	}
+
+	reverseSortOrder() {
+		this.setState(state => ({
+			sortAscending: !state.sortAscending,
+			results: state.results.reverse()
+		}));
 	}
 
 	render() {
@@ -88,6 +98,12 @@ class Matches extends Component {
 		} else {
 			return (
 				<div className="results-holder">
+					<div className="sort-holder">
+						<button className="date-sort right" onClick={this.reverseSortOrder}>
+							Date
+							<span className={this.state.sortAscending ? 'arrow' : 'arrow reverse'} />
+						</button>
+					</div>
 					{this.state.results.map((match, m) => {
 						return (
 							<div key={m} className="match-holder">
