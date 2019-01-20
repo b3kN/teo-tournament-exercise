@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Tournament from './components/Tournament';
-import Header from './components/Header';
-import './styles/App.scss';
+import React, { Component } from "react";
+import Tournament from "./components/Tournament";
+import Header from "./components/Header";
+import "./styles/App.scss";
 
 class App extends Component {
   constructor (props) {
