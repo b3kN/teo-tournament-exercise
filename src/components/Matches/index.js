@@ -86,7 +86,9 @@ class Matches extends Component {
 
 						this.setState({ loading: false });
 					});
-			}).catch((e) => { console.log("Error while fetching league results", e); });
+			}).catch(function (e) {
+				console.log("An error was encountered while fetching league results data", e);
+			});
 	}
 
 	reverseSortOrder() {
